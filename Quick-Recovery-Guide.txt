@@ -1,0 +1,52 @@
+🧭 Quick Recovery Guide — Realtek RTL8822CE Wi-Fi (Arch Linux)
+
+🧩 When to Use
+Use this if:
+- Wi-Fi option suddenly disappears after update/reboot
+- You did a fresh Arch install
+- Kernel got updated and Wi-Fi broke again
+
+This guide restores and hardens your RTL8822CE driver setup.
+
+⚙️ Clone the Repo
+git clone https://github.com/<yourusername>/arch-rtl8822ce-autofix.git
+cd arch-rtl8822ce-autofix
+
+🧹 Optional Cleanup (if previous install exists)
+bash uninstall.sh
+
+🚀 Run Setup
+bash setup.sh
+
+This will:
+- Install or rebuild the rtw88-dkms-git driver
+- Apply stability fixes (ASPM & deep sleep)
+- Create a pacman hook for auto-repair on kernel updates
+- Reload your Wi-Fi driver instantly
+
+Then reboot once:
+sudo reboot
+
+🔧 Manual Repair (if Wi-Fi breaks again)
+sudo /usr/local/bin/fix-rtl8822ce.sh
+
+This rebuilds and reloads the Wi-Fi driver on the spot.
+
+🔄 Auto-Repair on Kernel Update
+After every pacman -Syu, your system automatically:
+- Detects kernel change
+- Rebuilds DKMS module
+- Reloads the Realtek driver
+
+No manual steps required.
+
+🧠 Notes
+- Works for Realtek RTL8822CE chip (HP, ASUS, Lenovo etc.)
+- Requires DKMS and yay installed
+- Stable driver options added automatically
+
+✅ Summary
+Clean old setup: bash uninstall.sh
+Full reinstall: bash setup.sh
+Manual fix: sudo /usr/local/bin/fix-rtl8822ce.sh
+Auto-fix on updates: handled by pacman hook

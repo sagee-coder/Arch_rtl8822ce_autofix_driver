@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = linux
+Target = linux-zen
+Target = linux-lts
+
+[Action]
+Description = Rebuilding RTL8822CE Wi-Fi driver after kernel upgrade
+When = PostTransaction
+Exec = /usr/local/bin/fix-rtl8822ce.sh
